@@ -1,48 +1,42 @@
-// deposite button handle
-function publicInput(inputIdNumber) {
-    const depositeInput = document.getElementById(inputIdNumber);
-    const getInputText = depositeInput.value;
-    const inputValue = parseFloat(getInputText);
-    depositeInput.value = '';
-    return inputValue;
-}
-
+// generating deposit button;
 document.getElementById('deposit-button').addEventListener('click', function () {
-    // get deposite input
-    const inputValue = publicInput('deposit-input');
-    // update deposite in display
-    const prevDeposite = document.getElementById('deposit-total');
-    const depositeText = prevDeposite.innerText;
-    const getDeposite = parseFloat(depositeText);
-    const totalDeposite = inputValue + getDeposite;
-    prevDeposite.innerText = totalDeposite;
-
-    // connect to main balence 
-    const prevBalence = document.getElementById('balance-total');
-    const getBalenceText = prevBalence.innerText;
-    const balenceFloating = parseFloat(getBalenceText);
-    const totalBalence = balenceFloating + inputValue;
-    prevBalence.innerText = totalBalence;
+    // getting deposit input
+    const getInput = document.getElementById('deposit-input');
+    const inputValue = getInput.value;
+    const valueFloat = parseFloat(inputValue);
+    // display deposit goes to here
+    const depoDisplay = document.getElementById('deposit-total');
+    const depoText = depoDisplay.innerText;
+    const depoFloating = parseFloat(depoText);
+    const getDepo = valueFloat + depoFloating;
+    depoDisplay.innerText = getDepo;
+    getInput.value = '';
+    // updating main Balence
+    const balenceDisplay = document.getElementById('balance-total');
+    const BalenceText = balenceDisplay.innerText;
+    const balenceFloating = parseFloat(BalenceText);
+    const total = balenceFloating + getDepo;
+    balenceDisplay.innerText = total;
 });
-
-// withdraw position handle 
+// generating withdraw Button
 document.getElementById('withdraw-button').addEventListener('click', function () {
-    // get withdraw input value via publicInput Function
-    const withdrawFloat = publicInput('withdraw-input')
+    // getting withdraw input
+    const withInput = document.getElementById('withdraw-input');
+    const getWithdrawValue = withInput.value;
+    const withdrawFloat = parseFloat(getWithdrawValue);
+    // generate withdraw display
+    const withDisplay = document.getElementById('withdraw-total');
+    const getWithdrawText = withDisplay.innerText;
+    const DisplayFloat = parseFloat(getWithdrawText);
+    const WithdrawTotal = DisplayFloat + withdrawFloat;
+    withDisplay.innerText = WithdrawTotal;
+    withInput.value = '';
 
-    // update withdraw position
-    const withdrawValue = document.getElementById('withdraw-total');
-    const getwithdrawText = withdrawValue.innerText;
-    const withdrawableAmount = parseFloat(getwithdrawText);
-    const netWithdraw = withdrawFloat - withdrawableAmount;
-    withdrawValue.innerText = netWithdraw;
-
-
-    // update balence and less from withdraw
-    const netBalence = document.getElementById('balance-total');
-    const getBalenceText = netBalence.innerText;
-    const floating = parseFloat(getBalenceText);
-    const total = floating - withdrawFloat;
-    netBalence.innerText = total;
+    // generating and reduce withdraw from main balence
+    const getBalence = document.getElementById('balance-total');
+    const balenceText = getBalence.innerText;
+    const BalenceFloat = parseFloat(balenceText);
+    const totalBalence = BalenceFloat - WithdrawTotal;
+    getBalence.innerText = totalBalence;
 
 });
